@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no,user-scalable=no">
+    <title>金蟾操盘宝</title>
+</head>
+<body>
+<div class="window_toast" id="toast"></div>
+<div id="root"></div>
+<iframe src="http://web.hdlkg.net/k2.html?type=0&code=" frameborder="0" class="k"></iframe>
+<iframe src="http://web.hdlkg.net/k2.html?type=1&code=" frameborder="0" class="k"></iframe>
+<iframe src="http://web.hdlkg.net/k2.html?type=2&code=" frameborder="0" class="k"></iframe>
+<iframe src="http://web.hdlkg.net/k2.html?type=3&code=" frameborder="0" class="k"></iframe>
+<script src="./jquery.min.js"></script>
+<script src="./jquery.signalR-2.2.3.min.js"></script>
+<script src="http://139.196.236.139:1818/signalr/hubs"></script>
+<script src="./localserver.js"></script>
+<script src="./polyfill.min.js"></script>
+<script>
+    $('.k').css('position','fixed');
+    $('.k').css('top','82px');
+    $('.k').css('left','0');
+    // $('.k').css('display','none');
+    $('.k').width(window.screen.width + "px");
+    $('.k').height("0px");
+    var r_code = '';
+    function test(){
+        var k_frame = $('<iframe src="http://web.hdlkg.net/k2.html?type=0&code=sc1809" frameborder="0" class="k"></iframe>');
+        k_frame.width(window.screen.width + "px");
+        k_frame.height(window.screen.height -327 + "px")
+        $('#k-frame').append(k_frame);
+    }
+    function initK(code){
+        if(r_code != code){
+            r_code = code;
+            $('.k').each(function () {
+                $(this).attr('src',$(this).attr('src') + code);
+            })
+        }
+    }
+    function showK(index){
+        $('.k').eq(index)
+            // .height(document.documentElement.clientHeight -87-82-143 -16 + "px")
+            .height(window.screen.height -327 + "px")
+            .siblings('.k')
+            .height('0px');
+    }
+    function hideK() {
+        $('.k').height('0px');
+    }
+</script>
+</body>
+</html>
